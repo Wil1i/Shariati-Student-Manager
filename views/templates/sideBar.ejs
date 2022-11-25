@@ -74,6 +74,24 @@
           </li>
 
           <li class="nav-item">
+            <a href="/register" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p class="lang-fa" style="float: right;">
+                ساخت حساب جدید
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/students/manage" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p class="lang-fa" style="float: right;">
+                مدیریت دانش‌آموزان
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
               <p class="lang-fa" style="float: right;">
@@ -82,24 +100,23 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../../index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
+              <% if(classes.length == 0){ %>
+                <li class="nav-item">
+                  <a class="nav-link" style="height: 40px;">
+                    <p style="float: right; color: rgb(246, 99, 99);; user-select: none;">هیچ کلاسی ثبت نشده</p>
+                  </a>
+                </li>
+              <% } %>
+
+
+              <% classes.forEach(c => { %>
+                <li class="nav-item">
+                  <a href="/classes/<%= c.paye %>/<%= c.reshte %>" class="nav-link" style="height: 40px;">
+                    <i style="float: right;" class="far fa-circle nav-icon"></i>
+                    <p style="float: right;"><%= c.paye %> <%= c.reshte %></p>
+                  </a>
+                </li>
+              <% }) %>
             </ul>
           </li>
         </ul>
