@@ -27,6 +27,10 @@ const User = db.define("users", {
 
     phoneNumber : {
         type: DataTypes.TEXT
+    },
+
+    profile : {
+        type : DataTypes.TEXT
     }
 }, {
     timestamps : false
