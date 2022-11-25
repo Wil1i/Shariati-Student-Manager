@@ -37,7 +37,7 @@
   </nav>
   <!-- /.navbar -->
 
-  <%- include("./templates/sideBar.ejs") %>
+  <%- include("./templates/sideBar.ejs", {pageName : "خانه"}) %>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -67,7 +67,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner text-lg-right">
-                <h3>۱۲۰۰<sup style="font-size: 0.8rem;right: 74px;">نفر</sup></h3>
+                <h3><%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "hazer").length) %><sup style="font-size: 0.8rem;right: 74px;">نفر</sup></h3>
                 <p>حاضر در مدرسه</p>
               </div>
               <div class="icon">
@@ -81,7 +81,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner text-lg-right">
-                <h3>۱۲۰<sup style="font-size: 0.8rem;right: 74px;">نفر</sup></h3>
+                <h3><%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "movajah").length) %><sup style="font-size: 0.8rem;right: 74px;">نفر</sup></h3>
                 <p>غیبت موجه</p>
               </div>
               <div class="icon">
@@ -95,7 +95,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner text-lg-right">
-                <h3>۱۰۰<sup style="font-size: 0.8rem;right: 60px;">نفر</sup></h3>
+                <h3><%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "baNameh").length) %><sup style="font-size: 0.8rem;right: 60px;">نفر</sup></h3>
                 <p>غیبت با نامه</p>
               </div>
               <div class="icon">
@@ -109,7 +109,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner text-lg-right">
-                <h3>۶۵<sup style="font-size: 0.8rem;right: 80px;">نفر</sup></h3>
+                <h3><%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "qeyreMovajah").length) %><sup style="font-size: 0.8rem;right: 80px;">نفر</sup></h3>
                 <p>غیبت غیر موجه</p>
               </div>
               <div class="icon">
@@ -129,10 +129,10 @@
 
               <div class="info-box-content">
                 <span class="info-box-text text-lg-right">اطلاع رسانی غیبت های با نامه</span>
-                <span class="info-box-number lang-fa">۵۰ از ۱۰۰</span>
+                <span class="info-box-number lang-fa"><%= toFarsiNumber(qeybats.filter(q => q.peygiri == "yes" && q.noeQeybat == "baNameh").length) %> از <%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "baNameh").length) %></span>
 
                 <div class="progress">
-                  <div class="progress-bar" style="width: 50%; background-color: black;"></div>
+                  <div class="progress-bar" style="width: <%= qeybats.filter(q => q.peygiri == "yes" && q.noeQeybat == "baNameh").length / qeybats.filter(q => q.noeQeybat == "baNameh") * 100 %>%; background-color: black;"></div>
                 </div>
               </div>
               <!-- /.info-box-content -->
@@ -146,10 +146,11 @@
 
               <div class="info-box-content">
                 <span class="info-box-text text-lg-right">پیگیری غیبت های غیر موجه</span>
-                <span class="info-box-number lang-fa">۳۳ از ۶۵</span>
+                <span class="info-box-number lang-fa"><%= toFarsiNumber(qeybats.filter(q => q.peygiri == "yes" && q.noeQeybat == "qeyreMovajah").length) %> از <%= toFarsiNumber(qeybats.filter(q => q.noeQeybat == "qeyreMovajah").length) %></span>
 
                 <div class="progress">
-                  <div class="progress-bar" style="width: 48%;"></div>
+                  <!-- 48/150*100 -->
+                  <div class="progress-bar" style="width: <%= qeybats.filter(q => q.peygiri == "yes" && q.noeQeybat == "qeyreMovajah").length / qeybats.filter(q => q.noeQeybat == "qeyreMovajah") * 100 %>%;"></div>
                 </div>
               </div>
               <!-- /.info-box-content -->
