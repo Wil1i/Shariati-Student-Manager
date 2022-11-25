@@ -22,6 +22,8 @@ app.use(passport.session());
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+require("./helpers/passport")
+
 const routes = require("./routes");
 app.use("/", routes);
 
