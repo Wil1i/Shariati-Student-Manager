@@ -20,7 +20,7 @@ const isUserNotLoggedIn = (req, res, next) => {
 
 const isUserTeacher = async (req, res, next) => {
   if (!req.user) {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 
   const isUserTeacher = userPermissions.isUserTeacher(req.user)
@@ -28,13 +28,13 @@ const isUserTeacher = async (req, res, next) => {
   if (isUserTeacher) {
     next();
   } else {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 };
 
 const isUserManager = async (req, res, next) => {
   if (!req.user) {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 
   const isUserManager = userPermissions.isUserManager(req.user)
@@ -42,13 +42,13 @@ const isUserManager = async (req, res, next) => {
   if (isUserManager) {
     next();
   } else {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 };
 
 const isUserDeveloper = async (req, res, next) => {
   if (!req.user) {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 
   const isUserDeveloper = userPermissions.isUserDeveloper(req.user)
@@ -56,13 +56,13 @@ const isUserDeveloper = async (req, res, next) => {
   if (isUserDeveloper) {
     next();
   } else {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 };
 
 const isUserOwner = async (req, res, next) => {
   if (!req.user) {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 
   const isUserOwner = userPermissions.isUserOwner(req.user)
@@ -70,7 +70,7 @@ const isUserOwner = async (req, res, next) => {
   if (isUserOwner) {
     next();
   } else {
-    return res.status(403).render("error", config.errors[403]);
+    return res.status(403).render("error", config.errors["403"]);
   }
 };
 
