@@ -1,21 +1,22 @@
 const express = require("express");
+const { isUserNotLoggedIn, isUserLoggedIn, isUserManager } = require("../helpers/auth")
 const Router = new express.Router();
 
 const homePageController = require("../controllers/homePageController");
-Router.get("/", homePageController.get);
+Router.get("/", isUserLoggedIn, isUserManager, homePageController.get);
 
 const loginPageController = require("../controllers/loginPageController");
-Router.get("/login", loginPageController.get);
-Router.post("/login", loginPageController.post, loginPageController.loginSuccess)
+Router.get("/login",isUserNotLoggedIn , loginPageController.get);
+Router.post("/login", isUserNotLoggedIn, loginPageController.post, loginPageController.loginSuccess)
 
 const registerPageController = require("../controllers/registerPageController");
-Router.get("/register", registerPageController.get);
-Router.post("/register", registerPageController.post);
+Router.get("/register", isUserLoggedIn, isUserManager, registerPageController.get);
+Router.post("/register", isUserLoggedIn, isUserManager, registerPageController.post);
 
 const studentsListPageController = require("../controllers/studentListPageController");
-Router.get("/students/list", studentsListPageController.get);
+Router.get("/students/list", isUserLoggedIn, studentsListPageController.get);
 
 const teacherListPageController = require("../controllers/teacherListPageController");
-Router.get("/students/teacherlist", teacherListPageController.get);
+Router.get("/students/teacherlist", isUserLoggedIn, teacherListPageController.get);
 
 module.exports = Router
