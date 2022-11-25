@@ -19,7 +19,7 @@ passport.use(
         });
       }
 
-      if (!User.validPassword(user, password)) {
+      if (!User.validatePassword(user, password)) {
         return done(null, false, {
           message: "نام کاربری و یا کلمه عبور اشتباه است",
         });
