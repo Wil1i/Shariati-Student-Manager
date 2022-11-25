@@ -8,3 +8,6 @@
 - [X] Add rank system ( For teachers - managers and... )
 - [X] Limit register page for managers and higher ranks
 - [X] Fix login problem (POST method pending)
+
+## Table for classes
+ID | Paye | Reshte | Rooz | Saat Start | Dars | Moalem ID
