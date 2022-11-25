@@ -6,5 +6,5 @@
 - [X] Add login system
 - [X] Add loggedIn and notLoggedIn function and use it on pages
 - [X] Add rank system ( For teachers - managers and... )
-- [ ] Limit register page for managers and higher ranks
-- [ ] Fix login problem (POST method pending)
+- [X] Limit register page for managers and higher ranks
+- [X] Fix login problem (POST method pending)
