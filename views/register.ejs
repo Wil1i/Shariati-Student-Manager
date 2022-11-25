@@ -17,9 +17,9 @@
     <div class="card-body">
       <p class="login-box-msg">ساخت حساب کاربری جدید</p>
 
-      <form action="../../index.html" method="post">
+      <form action="/register" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control lang-fa" placeholder="نام و نام خانوادگی">
+          <input type="text" name="realName" class="form-control lang-fa" placeholder="نام و نام خانوادگی">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control lang-fa" placeholder="نام کاربری">
+          <input type="text" name="username" class="form-control lang-fa" placeholder="نام کاربری">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -35,7 +35,15 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control lang-fa" placeholder="کلمه عبور">
+          <input type="tel" name="phoneNumber" class="form-control lang-fa" placeholder="تکرار کلمه عبور">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control lang-fa" placeholder="کلمه عبور">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
