@@ -55,18 +55,18 @@
           <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
            <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/" class="nav-link <%= (pageName == 'خانه') ? 'active' : ''%>">
               <i class="nav-icon fas fa-home"></i>
-              <p class="lang-fa float-right">
+              <p class="lang-fa" style="float: right;">
                 خانه
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="/students/list" class="nav-link">
+            <a href="/students/list" class="nav-link <%= (pageName == 'لیست غایبین') ? 'active' : ''%>">
               <i class="nav-icon fas fa-users"></i>
-              <p class="lang-fa float-right">
+              <p class="lang-fa" style="float: right;">
                 لیست غایبین
               </p>
             </a>
@@ -75,7 +75,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book-open"></i>
-              <p style="float: right;">
+              <p class="lang-fa" style="float: right;">
                 کلاس ها
                 <i class="right fas fa-angle-left"></i>
               </p>
