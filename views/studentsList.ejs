@@ -2,8 +2,32 @@
 <html lang="en">
   <head>
     <%- include("./templates/studentsList/head.ejs", {pageName: "لیست غایبین"}) %>
+    <link rel="stylesheet" href="/css/studentsList.css">
   </head>
   <body class="hold-transition sidebar-mini">
+
+    <div id="information-container">
+      <div id="student-informations">
+        <div id="student-informations-r">
+          <div id="si-main-information">
+            <img src="/dist/img/avatar.png" alt="" id="si-profile">
+            <p id="si-class">پایه یازدهم</p>
+            <p id="si-name">شایان نصرآبادی</p>
+            <p id="si-reshte">شبکه و نرم افزار</p>
+          </div>
+
+          <div id="si-informations">
+            <p id="si-father">شماره پدر : ۰۹۱۵۱۵۰۲۶۱۹</p>
+            <p id="si-mother">شماره مادر : ۰۹۱۵۹۵۱۹۷۳۴</p>
+            <p id="si-qeybat-movajah">غیبت های موجه : ۱۰</p>
+            <p id="si-qeybat-notMovajah">غیبت های غیر موجه : ۵</p>
+            <p id="si-farar">شناسایی سیستمی فرار از مدرسه : ۱</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="information-background"></div>
+    
 
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -68,41 +92,42 @@
 
                 <!-- qeybats -->
                 <!-- ['Shayan', 'Ali', 'Mohammad'] -->
-                <% qeybats.forEach((student) => { %>
+                <% qeybats.forEach(async (student) => { %>
+                  <% const target = students.find(s => s.id == student.studentID) %>
 
                   <div
                   class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column"
                 >
                   <div class="card bg-light d-flex flex-fill">
                     <div class="card-header text-muted border-bottom-0 lang-fa">
-                      پایه یازدهم
+                      پایه <%= target.class %>
                     </div>
                     <div class="card-body pt-0">
                       <div class="row">
                         <div class="col-5 text-center">
                           <img
-                            src="../../dist/img/user1-128x128.jpg"
+                            src="/dist/img/<%= target.profile %>"
                             alt="user-avatar"
                             class="img-circle img-fluid"
                           />
                         </div>
                         <div class="col-7">
-                          <h2 class="lead lang-fa"><b>شایان نصرآبادی</b></h2>
+                          <h2 class="lead lang-fa"><b><%= target.firstName %> <%= target.lastName %></b></h2>
                           <p class="text-muted text-sm lang-fa">
-                            <b>رشته: </b> کامپیوتر
+                            <b>رشته: </b> <%= target.reshte %>
                           </p>
                           <ul class="ml-4 mb-0 fa-ul text-muted">
-                            <li class="small lang-fa dc-contacts">
+                            <!-- <li class="small lang-fa dc-contacts">
                               <span class="fa-li"
                                 ><i class="fas fa-lg fa-check"></i
                               ></span>
                               حاضر در این زنگ: بله
-                            </li>
+                            </li> -->
                             <li class="small lang-fa dc-contacts">
                               <span class="fa-li"
                                 ><i class="fas fa-lg fa-phone"></i
                               ></span>
-                              شماره تماس پدر: ۰۹۱۲۳۴۵۶۷۸۹
+                              شماره تماس پدر: <%= target.fatherNumber %>
                             </li>
                           </ul>
                         </div>
@@ -119,14 +144,13 @@
                           <p class="card-header-qeybat">غیبت موجه</p>
                         <% } %>
 
-                        <a href="#" class="btn btn-sm btn-primary lang-fa">
+                        <a id="info-<%= student.id %>" class="btn btn-sm btn-primary lang-fa infoButton">
                           <i class="fas fa-user"></i> مشاهده سوابق
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
-
 
                 <% }) %>
                 
@@ -158,7 +182,41 @@
 
     <script>
       var rightText = document.getElementsByClassName("text-right")
+      var infoBackground = document.getElementById("information-background")
+      var infoContainer = document.getElementById("information-container")
+      var infoButtons = document.getElementsByClassName("infoButton")
       var movajahButton = document.getElementsByClassName("movajahEvent")
+
+      infoContainer.addEventListener("click", (e) => {
+        if(e.target.id !== "information-container") return;
+
+        infoBackground.style.opacity = "0"
+        infoContainer.style.opacity = "0"
+        setTimeout(() => {
+          infoBackground.style.display = "none"
+          infoContainer.style.display = "none"
+        }, 350);
+      })
+
+      for(let i = 0; i < infoButtons.length; i++){
+        infoButtons[i].addEventListener("click", async () => {
+          infoBackground.style.display = "block"
+          infoContainer.style.display = "flex"
+
+          setTimeout(() => { infoBackground.style.opacity = ".3"; infoContainer.style.opacity = "1" }, 10);
+
+          let studentInformation = await axios.get(`/students/list?action=information&id=${infoButtons[i].id.split("-")[1]}`)
+          studentInformation = studentInformation.data
+
+          const d = (v) => { return (v) ? v : "ثبت نشده" }
+
+          document.getElementById("si-profile").src = `/dist/img/${d(studentInformation.profile)}`
+          document.getElementById("si-name").innerHTML = `${d(studentInformation.firstName)} ${d(studentInformation.lastName)}`
+          document.getElementById("si-reshte").innerHTML = d(studentInformation.reshte)
+          document.getElementById("si-father").innerHTML = `شماره پدر : ${d(studentInformation.fatherNumber)}`
+          document.getElementById("si-mother").innerHTML = `شماره مادر : ${d(studentInformation.motherNumber)}`
+        })        
+      }
 
       for(let i = 0; i < movajahButton.length; i++){
 
@@ -174,7 +232,7 @@
            })
         })
 
-      }      
+      } 
     </script>
   </body>
 </html>
