@@ -14,7 +14,8 @@ Router.get("/register", isUserLoggedIn, isUserManager, registerPageController.ge
 Router.post("/register", isUserLoggedIn, isUserManager, registerPageController.post);
 
 const studentsListPageController = require("../controllers/studentListPageController");
-Router.get("/students/list", isUserLoggedIn, studentsListPageController.get);
+Router.get("/students/list", isUserLoggedIn, isUserManager,studentsListPageController.get);
+Router.post("/students/list", isUserLoggedIn, isUserManager, studentsListPageController.post)
 
 const teacherListPageController = require("../controllers/teacherListPageController");
 Router.get("/students/teacherlist", isUserLoggedIn, teacherListPageController.get);

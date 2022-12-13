@@ -112,9 +112,9 @@
                       <div class="text-right">
 
                         <% if(student.noeQeybat == "qeyreMovajah"){ %>
-                          <a href="#" class="btn btn-sm btn-success lang-fa">
+                          <button href="#" class="btn btn-sm btn-success lang-fa movajahEvent" id="<%=student.id%>">
                             <i class="fas fa-check"></i> موجه کردن
-                          </a>
+                          </button>
                         <% }else{ %>
                           <p class="card-header-qeybat">غیبت موجه</p>
                         <% } %>
@@ -148,13 +148,33 @@
     </div>
     <!-- ./wrapper -->
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
+
+    <script>
+      var rightText = document.getElementsByClassName("text-right")
+      var movajahButton = document.getElementsByClassName("movajahEvent")
+
+      for(let i = 0; i < movajahButton.length; i++){
+
+        movajahButton[i].addEventListener("click", async (e) => {
+           const studentId = movajahButton[i].id
+           await axios.post(`/students/list?action=movajah&id=${studentId}`).then(result => {
+
+            if(result.status == 200){
+
+              movajahButton[i].textContent = "غیبت موجه شد"
+
+            }
+           })
+        })
+
+      }      
+    </script>
   </body>
 </html>
