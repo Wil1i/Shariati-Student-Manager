@@ -37,12 +37,17 @@ const isUserManager = async (req, res, next) => {
     return res.status(403).render("error", config.errors["403"]);
   }
 
-  const isUserManager = userPermissions.isUserManager(req.user)
+  const isUserManager = await userPermissions.isUserManager(req.user)
 
   if (isUserManager) {
     next();
   } else {
-    return res.status(403).render("error", config.errors["403"]);
+    const isUserTeacher = await userPermissions.isUserTeacher(req.user)
+    if(isUserTeacher){
+      return res.redirect("/students/teacherlist")
+    }else{
+      return res.status(403).render("error", config.errors["403"]);
+    }
   }
 };
 
