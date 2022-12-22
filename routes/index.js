@@ -19,5 +19,9 @@ Router.post("/students/list", isUserLoggedIn, isUserManager, studentsListPageCon
 
 const teacherListPageController = require("../controllers/teacherListPageController");
 Router.get("/students/teacherlist", isUserLoggedIn, teacherListPageController.get);
+Router.post("/students/teacherlist", isUserLoggedIn, teacherListPageController.post)
+
+const apiController = require("../controllers/apiController")
+Router.get("/api/:request", apiController.get)
 
 module.exports = Router
