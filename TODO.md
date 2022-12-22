@@ -9,9 +9,12 @@
     [ ] User can import students using excel file
 - [ ] Complete teacher system
     [x] When a teacher comes into url, first of all login and then going to teacher's class (hozoor ghiab)
-    [ ] Use "kelas" variable into "teacherListPage.ejs" for showing students name and skip it using javascript
-    [ ] Send students data using axios (When request sends, wait for result and then going to next student)
-    [ ] When class ends, teacher have not access to class's list (It's better to show a text (like 403) to teacher)
+    [x] Use "kelas" variable into "teacherListPage.ejs" for showing students name and skip it using javascript
+    [x] Send students data using axios (When request sends, wait for result and then going to next student)
+    [x] When class ends, teacher have not access to class's list (It's better to show a text (like 403) to teacher)
+    [ ] disable buttons when request sent, (wait for result and then remove disable from it)
+    [ ] Add modules for namoshakhas qeybats and hozoori, and show it into home page, using a table
+    [ ] Add start date into qeybat module (for see in which class student is no available)
 - [x] Check kardan ke age mouse rooe box seifd click shod event kar nakone
 
 ## Table for classes
