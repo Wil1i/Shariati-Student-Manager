@@ -4,6 +4,9 @@
   <%- include("./templates/index/head.ejs", {pageName : "خانه"}) %>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<% for(const key in flash){ %>
+  <span role="alert" class="flash"><%= flash[key] %></span>
+<% } %>
 <div class="wrapper">
 
   <!-- Preloader -->
