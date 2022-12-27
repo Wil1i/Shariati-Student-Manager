@@ -19,12 +19,15 @@ const post = async (req, res) => {
         return res.redirect("/register")
     }else{
         if(req.body.phoneNumber && req.body.phoneNumber.length == 11){
+            let isUserHaveProfile = false
+            if(req.file && req.file.filename) isUserHaveProfile = req.file.filename
             await User.create({
                 username : req.body.username.toLowerCase(),
                 password : await User.encryptPassword(req.body.password),
                 realName : req.body.realName,
                 phoneNumber : req.body.phoneNumber,
-                userRank : "teacher"
+                userRank : "teacher",
+                profile : (isUserHaveProfile) ? isUserHaveProfile : ""
             })
     
             req.flash("success", "حساب کاربری مورد نظر با موفقیت ساخته شد.")

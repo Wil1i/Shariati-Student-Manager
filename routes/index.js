@@ -1,4 +1,5 @@
 const express = require("express");
+const uploader = require("../helpers/uploader")
 const { isUserNotLoggedIn, isUserLoggedIn, isUserManager } = require("../helpers/auth")
 const Router = new express.Router();
 
@@ -11,7 +12,7 @@ Router.post("/login", isUserNotLoggedIn, loginPageController.post, loginPageCont
 
 const registerPageController = require("../controllers/registerPageController");
 Router.get("/register", isUserLoggedIn, isUserManager, registerPageController.get);
-Router.post("/register", isUserLoggedIn, isUserManager, registerPageController.post);
+Router.post("/register", isUserLoggedIn, isUserManager, uploader.single("file"), registerPageController.post);
 
 const studentsListPageController = require("../controllers/studentListPageController");
 Router.get("/students/list", isUserLoggedIn, isUserManager,studentsListPageController.get);
