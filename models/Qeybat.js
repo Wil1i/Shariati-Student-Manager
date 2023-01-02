@@ -27,6 +27,10 @@ const Qeybat = db.define("qeybats", {
 
     peygiri : {
         type : DataTypes.TEXT
+    },
+
+    startDate : {
+        type : DataTypes.TEXT
     }
 }, {
     timestamps : false

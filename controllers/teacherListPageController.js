@@ -77,6 +77,17 @@ const post = async (req, res) => {
         }).then(() => {
             res.json(nextStudentInformation || {ok : "no"})
         })
+
+    }else if(req.query.action == "naMoshakhas"){
+        await Qayeb.create({
+            studentID : req.query.studentId,
+            byID : req.user.id,
+            tarikh : "ADD IT",
+            noeQeybat : "naMoshakhas",
+            peygiri : "no"
+        }).then(() => {
+            res.json(nextStudentInformation || {ok : "no"})
+        })
     }else{
         res.json(nextStudentInformation || {ok : "no"})
     }
