@@ -194,6 +194,20 @@
             }
         })
 
+        studentSearchInput.addEventListener("keyup", (e) => {
+            if(e.key == "Backspace"){
+                const stName = studentSearchInput.value
+                for(let i = 0; i < studentsName.length; i++){
+                    const target = document.getElementById("stC-"+studentsName[i].id)
+                    if(studentsName[i].textContent.includes(stName)){
+                        target.style.display = "flex"
+                    }else{
+                        target.style.display = "none"
+                    }
+                }   
+            }
+        })
+
       infoContainer.addEventListener("click", (e) => {
         if(e.target.id !== "information-container") return;
 
