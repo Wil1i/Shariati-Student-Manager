@@ -27,6 +27,9 @@ require("./helpers/passport")
 const routes = require("./routes");
 app.use("/", routes);
 
+const students = require("./routes/students");
+app.use("/students", students);
+
 app.listen(config.PORT || 80, () => {
     console.log(`[RUN] App is running on port ${config.PORT || 80}`)
 })

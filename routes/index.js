@@ -14,18 +14,7 @@ const registerPageController = require("../controllers/registerPageController");
 Router.get("/register", isUserLoggedIn, isUserManager, registerPageController.get);
 Router.post("/register", isUserLoggedIn, isUserManager, uploader.single("file"), registerPageController.post);
 
-const studentsListPageController = require("../controllers/studentListPageController");
-Router.get("/students/list", isUserLoggedIn, isUserManager,studentsListPageController.get);
-Router.post("/students/list", isUserLoggedIn, isUserManager, studentsListPageController.post)
-
-const teacherListPageController = require("../controllers/teacherListPageController");
-Router.get("/students/teacherlist", isUserLoggedIn, teacherListPageController.get);
-Router.post("/students/teacherlist", isUserLoggedIn, teacherListPageController.post)
-
 const apiController = require("../controllers/apiController")
 Router.get("/api/:request", apiController.get)
-
-const studentManagerController = require("../controllers/studentManager")
-Router.get("/students/manage", isUserLoggedIn, isUserManager, studentManagerController.get)
 
 module.exports = Router

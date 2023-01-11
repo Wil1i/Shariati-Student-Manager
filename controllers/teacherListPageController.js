@@ -50,7 +50,7 @@ const get = async (req, res) => {
                 reshte : kelas.reshte
             }
         })
-        console.log(students.length)
+        
         res.render("teacherList", {
             flash : req.flash(),
             user : req.user,

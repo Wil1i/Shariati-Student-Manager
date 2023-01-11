@@ -19,64 +19,44 @@ const isUserNotLoggedIn = (req, res, next) => {
 };
 
 const isUserTeacher = async (req, res, next) => {
-  if (!req.user) {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (!req.user) return res.status(403).render("error", config.errors["403"]);
 
-  const isUserTeacher = userPermissions.isUserTeacher(req.user)
+  const isUserRankTeacher = userPermissions.isUserTeacher(req.user)
 
-  if (isUserTeacher) {
-    next();
-  } else {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (isUserRankTeacher) next();
+  else return res.status(403).render("error", config.errors["403"]);
 };
 
 const isUserManager = async (req, res, next) => {
-  if (!req.user) {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (!req.user) return res.status(403).render("error", config.errors["403"]);
 
-  const isUserManager = await userPermissions.isUserManager(req.user)
+  const isUserRankManager = await userPermissions.isUserManager(req.user)
 
-  if (isUserManager) {
+  if (isUserRankManager) {
     next();
   } else {
-    const isUserTeacher = await userPermissions.isUserTeacher(req.user)
-    if(isUserTeacher){
-      return res.redirect("/students/teacherlist")
-    }else{
-      return res.status(403).render("error", config.errors["403"]);
-    }
+    const isUserRankTeacher = await userPermissions.isUserTeacher(req.user)
+    if(isUserRankTeacher) return res.redirect("/students/teacherlist")
+    else return res.status(403).render("error", config.errors["403"]);
   }
 };
 
 const isUserDeveloper = async (req, res, next) => {
-  if (!req.user) {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (!req.user) return res.status(403).render("error", config.errors["403"]);
 
-  const isUserDeveloper = userPermissions.isUserDeveloper(req.user)
+  const isUserRankDeveloper = userPermissions.isUserDeveloper(req.user)
 
-  if (isUserDeveloper) {
-    next();
-  } else {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (isUserRankDeveloper) next();
+  else return res.status(403).render("error", config.errors["403"]);
 };
 
 const isUserOwner = async (req, res, next) => {
-  if (!req.user) {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (!req.user) return res.status(403).render("error", config.errors["403"]);
 
-  const isUserOwner = userPermissions.isUserOwner(req.user)
+  const isUserRankOwner = userPermissions.isUserOwner(req.user)
 
-  if (isUserOwner) {
-    next();
-  } else {
-    return res.status(403).render("error", config.errors["403"]);
-  }
+  if (isUserRankOwner) next();
+  else return res.status(403).render("error", config.errors["403"]);
 };
 
 module.exports = {
