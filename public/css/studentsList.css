@@ -72,3 +72,16 @@
     padding: 10px;
     border-radius: 10px;
 }
+
+#studentSearchInput{
+    width: 20%;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    float: right;
+}
+
+#navBarSt{
+    padding: 10px;
+}

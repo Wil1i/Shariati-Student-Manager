@@ -89,11 +89,19 @@
           <div class="card card-solid">
             <div class="card-body pb-0">
               <div class="row">
-
+                <div
+                class="col-12 col-sm-6 col-md-12 d-flex align-items-stretch flex-column"
+              >
+                <div id="navBarSt" class="card bg-light d-flex flex-fill" style="align-items: flex-end;">
+                    <!-- Add filter for showing students (by reshte and class and...) -->
+                    <!-- Add search box -->
+                    <input type="text" id="studentSearchInput" placeholder="جستجو" dir="rtl">
+                </div>
+              </div>
                 <% students.forEach(async (student) => { %>
 
-                  <div
-                  class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column"
+                  <div id="stC-<%=student.id%>"
+                  class="stC col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column"
                 >
                   <div class="card bg-light d-flex flex-fill">
                     <div class="card-header text-muted border-bottom-0 lang-fa">
@@ -109,7 +117,7 @@
                           />
                         </div>
                         <div class="col-7">
-                          <h2 class="lead lang-fa"><b><%= student.firstName %> <%= student.lastName %></b></h2>
+                          <h2 class="lead lang-fa stN" id="<%=student.id%>"><b><%= student.firstName %> <%= student.lastName %></b></h2>
                           <p class="text-muted text-sm lang-fa">
                             <b>رشته: </b> <%= student.reshte %>
                           </p>
@@ -169,6 +177,22 @@
       var infoContainer = document.getElementById("information-container")
       var infoButtons = document.getElementsByClassName("infoButton")
       var movajahButton = document.getElementsByClassName("movajahEvent")
+      var studentSearchInput = document.getElementById("studentSearchInput")
+      var studentsContainer = document.getElementsByClassName("stC")
+      var studentsName = document.getElementsByClassName("stN")
+
+        // For search box
+        studentSearchInput.addEventListener("keypress", (e) => {
+            const stName = studentSearchInput.value + e.key
+            for(let i = 0; i < studentsName.length; i++){
+                const target = document.getElementById("stC-"+studentsName[i].id)
+                if(studentsName[i].textContent.includes(stName)){
+                    target.style.display = "flex"
+                }else{
+                    target.style.display = "none"
+                }
+            }
+        })
 
       infoContainer.addEventListener("click", (e) => {
         if(e.target.id !== "information-container") return;
