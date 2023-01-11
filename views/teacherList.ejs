@@ -415,11 +415,8 @@
         
         if(!res.data.ok){
           studentName.textContent = res.data.firstName + " " + res.data.lastName
-          if(res.data.profile !== ""){
-            studentPicture.src = "/uploads/" + res.data.profile
-          }else{
-            studentPicture.style.display = "none"
-          }
+
+          (res.data.profile !== "") ? studentPicture.src = "/uploads/" + res.data.profile : studentPicture.style.display = "none"
 
           hazer.disabled = false
           qayeb.disabled = false
@@ -428,25 +425,16 @@
           info.style.display = "none"
           end.style.display = "block"
         }
-        
 
       }else{
-
+        // ! Write here
       }
     })
   }
 
-  hazer.addEventListener("click", async () => {
-    stUpdate("hazer")
-  })
-
-  qayeb.addEventListener("click", async () => {
-    stUpdate("qayeb")
-  })
-
-  naMoshakhas.addEventListener("click", async () => {
-    stUpdate("naMoshakhas")
-  })
+  hazer.addEventListener("click", async () => { stUpdate("hazer") })
+  qayeb.addEventListener("click", async () => { stUpdate("qayeb") })
+  naMoshakhas.addEventListener("click", async () => { stUpdate("naMoshakhas") })
 </script>
 
 </body>

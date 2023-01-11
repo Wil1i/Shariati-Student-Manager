@@ -178,11 +178,11 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
 
     <script>
       var rightText = document.getElementsByClassName("text-right")
@@ -227,12 +227,7 @@
         movajahButton[i].addEventListener("click", async (e) => {
            const studentId = movajahButton[i].id
            await axios.post(`/students/list?action=movajah&id=${studentId}`).then(result => {
-
-            if(result.status == 200){
-
-              movajahButton[i].textContent = "غیبت موجه شد"
-
-            }
+            if(result.status == 200) movajahButton[i].textContent = "غیبت موجه شد"
            })
         })
 
