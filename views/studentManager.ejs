@@ -165,11 +165,11 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
 
     <script>
       var rightText = document.getElementsByClassName("text-right")
@@ -183,27 +183,17 @@
 
         // For search box
         studentSearchInput.addEventListener("keypress", (e) => {
-            const stName = studentSearchInput.value + e.key
             for(let i = 0; i < studentsName.length; i++){
                 const target = document.getElementById("stC-"+studentsName[i].id)
-                if(studentsName[i].textContent.includes(stName)){
-                    target.style.display = "flex"
-                }else{
-                    target.style.display = "none"
-                }
+                (studentsName[i].textContent.includes(studentSearchInput.value)) ? target.style.display = "flex" : target.style.display = "none"
             }
         })
 
         studentSearchInput.addEventListener("keyup", (e) => {
             if(e.key == "Backspace"){
-                const stName = studentSearchInput.value
                 for(let i = 0; i < studentsName.length; i++){
                     const target = document.getElementById("stC-"+studentsName[i].id)
-                    if(studentsName[i].textContent.includes(stName)){
-                        target.style.display = "flex"
-                    }else{
-                        target.style.display = "none"
-                    }
+                    (studentsName[i].textContent.includes(studentSearchInput.value)) ? target.style.display = "flex" : target.style.display = "none"
                 }   
             }
         })
