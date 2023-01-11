@@ -19,7 +19,7 @@
 
 - [ ] Add close button to "Savabegh Qeybat ha"
 - [ ] Add delete button to Qeybats (Baghale movajah kardan, hazfe qeybat ham ezfe beshe)
-- [ ] Add class management page for admin and owner
+- [ ] Add class(kelas) management page for admin and owner
 
 
 ## Table for classes
