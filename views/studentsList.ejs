@@ -92,6 +92,7 @@
 
                 <!-- qeybats -->
                 <!-- ['Shayan', 'Ali', 'Mohammad'] -->
+                <% if(qeybats && qeybats[0]){ %>
                 <% qeybats.forEach(async (student) => { %>
                   <% const target = students.find(s => s.id == student.studentID) %>
 
@@ -153,6 +154,9 @@
                 </div>
 
                 <% }) %>
+                <%}else{%>
+                  <h1 style="color: red; text-align: center;width: 100%;" dir="rtl">موردی یافت نشد.</h1>
+                <%}%>
                 
               </div>
             </div>

@@ -5,7 +5,18 @@ const Student = require("../models/Student")
 
 const get = async (req, res) => {
     if(!req.query.action){
-        const qeybats = await Qeybat.findAll()
+        let qeybats;
+        if(req.query.qeybat == "nameh") 
+            { qeybats = await Qeybat.findAll({where : {noeQeybat: "baNameh"}}) }
+        else if(req.query.qeybat == "qeyreMovajah") 
+            { qeybats = await Qeybat.findAll({where : {noeQeybat: "qeyreMovajah"}}) }
+        else if(req.query.qeybat == "movajah")
+            { qeybats = await Qeybat.findAll({where : {noeQeybat: "movajah"}}) }
+        else if(req.query.qeybat == "hozoor")
+            { qeybats = await Qeybat.findAll(); req.flash("warning", "در حال حاضر در دسترس نمی باشد") }
+        else
+            qeybats = await Qeybat.findAll()
+
 
         const classes = await Classes.findAll({
             where : {
