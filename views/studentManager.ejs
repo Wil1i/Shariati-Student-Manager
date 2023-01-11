@@ -114,12 +114,6 @@
                             <b>رشته: </b> <%= student.reshte %>
                           </p>
                           <ul class="ml-4 mb-0 fa-ul text-muted">
-                            <!-- <li class="small lang-fa dc-contacts">
-                              <span class="fa-li"
-                                ><i class="fas fa-lg fa-check"></i
-                              ></span>
-                              حاضر در این زنگ: بله
-                            </li> -->
                             <li class="small lang-fa dc-contacts">
                               <span class="fa-li"
                                 ><i class="fas fa-lg fa-phone"></i
@@ -199,7 +193,7 @@
 
           const d = (v) => { return (v) ? v : "ثبت نشده" }
 
-          document.getElementById("si-profile").src = `/dist/img/${d(studentInformation.profile)}`
+          document.getElementById("si-profile").src = `/uploads/${d(studentInformation.profile)}`
           document.getElementById("si-name").innerHTML = `${d(studentInformation.firstName)} ${d(studentInformation.lastName)}`
           document.getElementById("si-reshte").innerHTML = d(studentInformation.reshte)
           document.getElementById("si-father").innerHTML = `شماره پدر : ${d(studentInformation.fatherNumber)}`
