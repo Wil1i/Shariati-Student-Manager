@@ -13,5 +13,6 @@ Router.post("/teacherlist", isUserLoggedIn, teacherListPageController.post)
 
 const studentManagerController = require("../controllers/studentManager")
 Router.get("/manage", isUserLoggedIn, isUserManager, studentManagerController.get)
+Router.post("/manage", isUserLoggedIn, isUserManager, studentManagerController.post)
 
 module.exports = Router

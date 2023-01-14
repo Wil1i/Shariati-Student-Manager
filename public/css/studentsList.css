@@ -85,3 +85,7 @@
 #navBarSt{
     padding: 10px;
 }
+
+.stC{
+    transition: opacity .3s ease-in-out;
+}

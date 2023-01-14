@@ -139,6 +139,8 @@
                         <a id="info-<%= student.id %>" class="btn btn-sm btn-primary lang-fa infoButton">
                           <i class="fas fa-user"></i> مشاهده سوابق
                         </a>
+
+                        <button id="delete-<%=student.id%>" class="deleteBtn btn btn-sm btn-danger lang-fa float-sm-left">حذف دانش‌آموز</button>
                       </div>
                     </div>
                   </div>
@@ -185,8 +187,10 @@
         // For search box
         studentSearchInput.addEventListener("keypress", (e) => {
             for(let i = 0; i < studentsName.length; i++){
-                const target = document.getElementById("stC-"+studentsName[i].id)
-                (studentsName[i].textContent.includes(studentSearchInput.value)) ? target.style.display = "flex" : target.style.display = "none"
+              const target = document.getElementById(`stC-${studentsName[i].id}`);
+              (studentsName[i].textContent.includes(studentSearchInput.value)) 
+                ? target.style.display = "flex" 
+                : target.style.display = "none"
             }
         })
 
@@ -240,6 +244,25 @@
           infoContainer.style.display = "none"
         }, 350);
       })
+
+      // Delete btn action
+      var delStudents = document.getElementsByClassName("deleteBtn")
+      for(let i = 0; i < delStudents.length; i++){
+        delStudents[i].addEventListener("click", async () => {
+          const studentID = delStudents[i].id.split("-")[1]
+          await axios.post("/students/manage?action=deleteStudent", {
+            id : studentID
+          }).then((res) => {
+            const findContainer = document.getElementById(`stC-${studentID}`)
+            if(res.status == 200){
+              findContainer.style.opacity = "0"
+              setTimeout(() => {
+                findContainer.style.display = "none"
+              }, 350);
+            }
+          })
+        })
+      }
     </script>
   </body>
 </html>

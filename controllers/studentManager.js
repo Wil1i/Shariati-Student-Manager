@@ -16,8 +16,16 @@ const get = async (req, res) => {
 
 }
 
-const post = (req, res) => {
-
+const post = async (req, res) => {
+    if(req.query.action == "deleteStudent"){
+        const findStudent = await Student.findByPk(req.body.id)
+        if(findStudent){
+            await findStudent.destroy()
+            res.send("Successfully deleted")
+        }else{
+            res.status(403).send("Not Found")
+        }
+    }
 }
 
 module.exports = {
