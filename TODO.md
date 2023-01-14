@@ -3,7 +3,7 @@
 - [x] Make "سوابق" page for see student's history
 - [x] Add "موجه کردن"'s button action (using axios)
 - [ ] Add "students/manage" page
-    [ ] User can delete students
+    [x] User can delete students
     [ ] User can edit student's informations
     [ ] User can add students manually
     [ ] User can import students using excel file
