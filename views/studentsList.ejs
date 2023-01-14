@@ -10,6 +10,7 @@
       <div id="student-informations">
         <div id="student-informations-r">
           <div id="si-main-information">
+            <i id="close" class="fas fa-minus" style="color: black;cursor: pointer;float: left;"></i>
             <img src="/dist/img/avatar.png" alt="" id="si-profile">
             <p id="si-class">پایه یازدهم</p>
             <p id="si-name">شایان نصرآبادی</p>
@@ -232,6 +233,17 @@
         })
 
       } 
+
+      // Close btn action 
+      var minus = document.getElementById("close")
+      minus.addEventListener("click", () => {
+        infoBackground.style.opacity = "0"
+        infoContainer.style.opacity = "0"
+        setTimeout(() => {
+          infoBackground.style.display = "none"
+          infoContainer.style.display = "none"
+        }, 350);
+      })
     </script>
   </body>
 </html>
