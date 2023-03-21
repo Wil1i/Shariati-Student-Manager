@@ -20,7 +20,7 @@
         </div>
         <div class="image">
           <img
-            src="/uploads/<%= user.profile %>"
+            src="/uploads/<%= user.profile || 'avatar.jpg' %>"
             class="img-circle elevation-2"
             alt="User Image"
           />
