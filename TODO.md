@@ -13,6 +13,17 @@
 
 - [ ] Tarif kardane peygiri none dakhele liste peygiri ke dige namayesh nade
 
+- [ ] Use invoice-print template for print student history
+
+- [ ] Use projects for show all classes and live informations (Update every 1 minute using ajax or refresh page)
+
+- [ ] Add an option into teachers profile for change password and use recover-password-v2 template for that
+
+- [ ] Add filter for showing students (by reshte and class and...) in studentManager search input
+
+- [ ] Convert english numbers to persian numbers
+
+- [ ] Complete add from file section in studentManager page
 
 ## Table for classes
 ID | Paye | Reshte | Rooz | Saat Start | Dars | Moalem ID
