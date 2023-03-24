@@ -17,4 +17,7 @@ Router.post("/register", isUserLoggedIn, isUserManager, uploader.single("file"),
 const apiController = require("../controllers/apiController")
 Router.get("/api/:request", apiController.get)
 
+const seeHTMLController = require("../controllers/seeHTMLController")
+Router.get("/see/:fileName", seeHTMLController.get)
+
 module.exports = Router
