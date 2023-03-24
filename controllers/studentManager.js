@@ -1,5 +1,6 @@
 const Student = require("../models/Student")
 const Class = require("../models/Classes")
+const toFarsiNumber = require("../helpers/toFarsiNumber")
 
 const get = async (req, res) => {
     // Show list of all students in a single page
@@ -11,7 +12,8 @@ const get = async (req, res) => {
         user : req.user,
         flash : req.flash(),
         students,
-        classes
+        classes,
+        toFarsiNumber
     })
 
 }

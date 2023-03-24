@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
   <head>
     <%- include("./templates/studentsList/head.ejs", {pageName: "مدیریت دانش‌آموزان"}) %>
     <link rel="stylesheet" href="/css/studentsList.css">
@@ -77,7 +77,7 @@
                 </ol>
               </div>
               <div class="col-sm-6">
-                <h1 class="float-sm-right">لیست غایبین</h1>
+                <h1 class="float-sm-right">مدیریت دانش‌آموزان</h1>
               </div>
             </div>
           </div>
@@ -93,10 +93,17 @@
                 <div
                 class="col-12 col-sm-6 col-md-12 d-flex align-items-stretch flex-column"
               >
-                <div id="navBarSt" class="card bg-light d-flex flex-fill" style="align-items: flex-end;">
-                    <!-- Add filter for showing students (by reshte and class and...) -->
-                    <!-- Add search box -->
+                <div id="navBarSt" class="card bg-light d-flex flex-fill" style="align-items: flex-end;flex-direction: row-reverse; justify-content: space-between;">
                     <input type="text" id="studentSearchInput" placeholder="جستجو" dir="rtl">
+                    <div>
+                      <a href="/students/manage/new" class="btn btn-sm btn-primary lang-fa">
+                        <i class="fas fa-plus"></i> دانش‌آموز جدید
+                      </a>
+
+                      <a href="/students/manage/new" class="btn btn-sm btn-primary lang-fa">
+                        <i class="fas fa-file"></i> اضافه کردن از طریق فایل
+                      </a>
+                    </div>
                 </div>
               </div>
                 <% students.forEach(async (student) => { %>
@@ -106,13 +113,17 @@
                 >
                   <div class="card bg-light d-flex flex-fill">
                     <div class="card-header text-muted border-bottom-0 lang-fa">
-                      پایه <%= student.class %>
+                      پایه <%= toFarsiNumber(student.class) %>
                     </div>
                     <div class="card-body pt-0">
                       <div class="row">
                         <div class="col-5 text-center">
                           <img
+                          <% if(student.profile && student.profile != ""){ %>
                             src="/uploads/<%= student.profile %>"
+                          <% }else{ %>
+                            src="/dist/img/avatar5.png"
+                          <% } %>
                             alt="user-avatar"
                             class="img-circle img-fluid"
                           />
@@ -127,7 +138,7 @@
                               <span class="fa-li"
                                 ><i class="fas fa-lg fa-phone"></i
                               ></span>
-                              شماره تماس پدر: <%= student.fatherNumber %>
+                              شماره تماس پدر: <%= toFarsiNumber(student.fatherNumber) %>
                             </li>
                           </ul>
                         </div>

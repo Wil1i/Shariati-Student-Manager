@@ -89,3 +89,7 @@
 .stC{
     transition: opacity .3s ease-in-out;
 }
+
+.top-btn{
+    color: white !important;
+}
